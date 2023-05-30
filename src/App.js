@@ -1,25 +1,26 @@
-import {Component} from 'react'
+import {useState} from 'react'
 
 import Header from './components/Header'
 import LandingSection from './components/LandingSection'
 import FeaturesSection from './components/FeaturesSection'
 
-class App extends Component {
-  state = {activeLanguage: 'EN'}
+import LanguageContext from './context'
 
-  changeLanguage = activeLanguage => {
-    this.setState({activeLanguage})
-  }
+const App = () => {
+  const [activeLanguage, changeLanguage] = useState('EN')
 
-  render() {
-    return (
-      <>
-        <Header />
-        <LandingSection />
-        <FeaturesSection />
-      </>
-    )
-  }
+  return (
+    <LanguageContext.Provider
+      value={{
+        activeLanguage,
+        changeLanguage,
+      }}
+    >
+      <Header />
+      <LandingSection />
+      <FeaturesSection />
+    </LanguageContext.Provider>
+  )
 }
 
 export default App
